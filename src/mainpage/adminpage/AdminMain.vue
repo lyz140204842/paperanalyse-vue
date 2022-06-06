@@ -16,7 +16,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="TeacherBrowse" >教师信息管理</el-menu-item>
-              <el-menu-item index="">学生信息管理</el-menu-item>
+              <el-menu-item index="StudentBrowse">学生信息管理</el-menu-item>
               <el-menu-item index="">班级信息管理</el-menu-item>
             </el-menu-item-group>
           </el-submenu>

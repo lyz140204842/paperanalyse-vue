@@ -6,6 +6,13 @@ import AdminMain from "@/mainpage/adminpage/AdminMain"
 
 import TeacherMain from "@/mainpage/teacherpage/TeacherMain"
 import TeacherBrowse from "@/mainpage/adminpage/PeopleManage/TeacherBrowse";
+import StudentBrowse from "@/mainpage/adminpage/PeopleManage/StudentBrowse";
+import ClassesBrowse from "@/mainpage/adminpage/PeopleManage/ClassesBrowse";
+import TeachingCourseBrowse from "@/mainpage/adminpage/CourseManage/TeachingCourseBrowse";
+import SelectingCourseBrowse from "@/mainpage/adminpage/CourseManage/SelectingCourseBrowse";
+import TermBrowse from "@/mainpage/adminpage/TermManage/TermBrowse";
+import CourseBrowse from "@/mainpage/adminpage/TermManage/CourseBrowse";
+import PaperBrowse from "@/mainpage/teacherpage/PaperManage/PaperBrowse";
 
 Vue.use(Router)
 
@@ -27,12 +34,49 @@ export default new Router({
           name: 'TeacherBrowse',
           component: TeacherBrowse
         },
+        {
+          path: '/StudentBrowse',
+          name: 'StudentBrowse',
+          component: StudentBrowse
+        },
+        {
+          path: '/ClassesBrowse',
+          name: 'ClassesBrowse',
+          component: ClassesBrowse
+        },
+        {
+          path: '/TeachingCourseBrowse',
+          name: 'TeachingCourseBrowse',
+          component: TeachingCourseBrowse
+        },
+        {
+          path: '/SelectingCourseBrowse',
+          name: 'SelectingCourseBrowse',
+          component: SelectingCourseBrowse
+        },
+        {
+          path: '/TermBrowse',
+          name: 'TermBrowse',
+          component: TermBrowse
+        },
+        {
+          path: '/CourseBrowse',
+          name: 'CourseBrowse',
+          component: CourseBrowse
+        },
       ]
     },
     {
       path: '/TeacherMain', //
       name: 'TeacherMain',
-      component: TeacherMain
+      component: TeacherMain,
+      children: [
+        {
+          path: '/PaperBrowse',
+          name: 'PaperBrowse',
+          component: PaperBrowse
+        },
+      ]
     }
   ]
 })
