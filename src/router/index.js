@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/login/Login'
+
 import AdminMain from "@/mainpage/adminpage/AdminMain"
+
 import TeacherMain from "@/mainpage/teacherpage/TeacherMain"
+import TeacherBrowse from "@/mainpage/adminpage/PeopleManage/TeacherBrowse";
+
 Vue.use(Router)
 
 export default new Router({
@@ -16,12 +20,19 @@ export default new Router({
     {
       path: '/AdminMain',
       name: 'AdminMain',
-      component: AdminMain,
+      component: AdminMain, // 管理员界面
+      children : [
+        {
+          path: '/TeacherBrowse',
+          name: 'TeacherBrowse',
+          component: TeacherBrowse
+        },
+      ]
     },
     {
-      path: '/TeacherMain',
+      path: '/TeacherMain', //
       name: 'TeacherMain',
-      component: TeacherMain,
+      component: TeacherMain
     }
   ]
 })

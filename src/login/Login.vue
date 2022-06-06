@@ -35,15 +35,16 @@ export default{
   },
   methods:{
     submitForm(){
-      if (this.ruleForm.username == "admin" && this.ruleForm.pass == "123"){
-        this.$router.push('/AdminMain');
-      }
-      else if (this.ruleForm.username == "tea" && this.ruleForm.pass == "123"){
-        this.$router.push('/TeacherMain');
-      }
-      else{
-        this.error = '用户名或密码错误';
-      }
+      this.$router.push('/AdminMain');
+      // if (this.ruleForm.username == "admin" && this.ruleForm.pass == "123"){
+      //   this.$router.push('/AdminMain');
+      // }
+      // else if (this.ruleForm.username == "tea" && this.ruleForm.pass == "123"){
+      //   this.$router.push('/TeacherMain');
+      // }
+      // else{
+      //   this.error = '用户名或密码错误';
+      // }
     }
   }
 }
