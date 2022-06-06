@@ -5,6 +5,13 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
+import axios from 'axios' //导入axios
+import qs from 'qs' //导入qs
+import * as echarts from 'echarts'//引入e-charts
+Vue.prototype.$echarts = echarts
+Vue.prototype.$axios = axios  //定义全局变量
+Vue.prototype.$qs = qs //定义全局变量
+axios.defaults.baseURL="http://localhost:8088" //url前缀
 
 Vue.use(ElementUI)
 
