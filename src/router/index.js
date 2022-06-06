@@ -5,11 +5,14 @@ import Login from '@/login/Login'
 import AdminMain from "@/mainpage/adminpage/AdminMain"
 
 import TeacherMain from "@/mainpage/teacherpage/TeacherMain"
-import TeacherBrowse from "@/mainpage/adminpage/PeopleManage/TeacherBrowse";
+
+import TeacherManage from "@/mainpage/adminpage/PeopleManage/TeacherManage";
 import StudentBrowse from "@/mainpage/adminpage/PeopleManage/StudentBrowse";
 import ClassesBrowse from "@/mainpage/adminpage/PeopleManage/ClassesBrowse";
+
 import TeachingCourseBrowse from "@/mainpage/adminpage/CourseManage/TeachingCourseBrowse";
 import SelectingCourseBrowse from "@/mainpage/adminpage/CourseManage/SelectingCourseBrowse";
+
 import TermBrowse from "@/mainpage/adminpage/TermManage/TermBrowse";
 import CourseBrowse from "@/mainpage/adminpage/TermManage/CourseBrowse";
 import PaperBrowse from "@/mainpage/teacherpage/PaperManage/PaperBrowse";
@@ -30,9 +33,9 @@ export default new Router({
       component: AdminMain, // 管理员界面
       children : [
         {
-          path: '/TeacherBrowse',
-          name: 'TeacherBrowse',
-          component: TeacherBrowse
+          path: '/TeacherManage',
+          name: 'TeacherManage',
+          component: TeacherManage
         },
         {
           path: '/StudentBrowse',
