@@ -1,12 +1,13 @@
 <template>
   <el-container>
-    <el-header>试卷分析系统基础数据管理</el-header>
+    <el-header id="header">
+        <div id="title">试卷分析系统-管理员</div>
+    </el-header>
 
     <el-container>
       <el-aside width="200px" class="aside">
         <el-menu
-          :default-openeds="openeds"
-          :default-active="$router.path"
+          :default-openeds="opened"
           router
           class="el-menu-vertical-demo"
         >
@@ -15,7 +16,7 @@
               <span>人员管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="TeacherBrowse" >教师信息管理</el-menu-item>
+              <el-menu-item index="TeacherBrowse">教师信息管理</el-menu-item>
               <el-menu-item index="StudentBrowse">学生信息管理</el-menu-item>
               <el-menu-item index="">班级信息管理</el-menu-item>
             </el-menu-item-group>
@@ -26,8 +27,8 @@
               <span>课程管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="" >教师授课管理</el-menu-item>
-              <el-menu-item index="" >学生选课管理</el-menu-item>
+              <el-menu-item index="">教师授课管理</el-menu-item>
+              <el-menu-item index="">学生选课管理</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -36,18 +37,20 @@
               <span>学期事务管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="" >学期管理</el-menu-item>
-              <el-menu-item index="" >课程管理</el-menu-item>
+              <el-menu-item index="">学期管理</el-menu-item>
+              <el-menu-item index="">课程管理</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
 
-        <el-main>
-          <router-view></router-view>
-        </el-main>
-
       </el-aside>
+
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+
     </el-container>
+
   </el-container>
 </template>
 
@@ -55,97 +58,29 @@
 export default {
   data() {
     return {
-      isCollapse: false,
-      icon: 'el-icon-s-unfold',
-      navText: '展开',
-      aside: 200,
-      navigations: [
-        {
-          'index': '1',
-          'title': '人员管理',
-          'icon': 'el-icon-menu',
-          'items': [
-            {
-              'index': '/',
-              'title': '教师信息管理'
-            },
-            {
-              'index': '/',
-              'title': '学生信息管理'
-            },
-            {
-              'index': '/',
-              'title': '班级信息管理'
-            },
-          ],
-        },
-        {
-          'index': '2',
-          'title': '课程管理',
-          'icon': 'el-icon-menu',
-          'items':  [
-            {
-              'index': '/',
-              'title': '教师授课管理'
-            },
-            {
-              'index': '/',
-              'title': '学生选课管理'
-            },
-          ],
-        },
-        {
-          'index': '3',
-          'title': '学期事务管理',
-          'icon': 'el-icon-menu',
-          'items':[
-            {
-              'index': '/',
-              'title': '学期管理'
-            },
-            {
-              'index': '/',
-              'title': '课程管理'
-            },
-          ],
-        },
-      ],
+      opened: ["1", "2", "3"],
     };
   },
-  methods: {
-    // 导航收缩与展开
-    handleCollapse() {
-      if (this.isCollapse) {
-        this.icon = 'el-icon-s-fold';
-        this.isCollapse = false;
-        this.navText = '收起';
-      } else {
-        this.icon = 'el-icon-s-unfold';
-        this.isCollapse = true;
-        this.navText = '展开';
-      }
-    },
-    handleChange() {
-      // this.$router.push("/TeacherBrowse")
-    }
-  }
+  methods: {}
 }
 </script>
 
 <style>
 * {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
 }
 
-.el-header {
-  background-color: #1fafe4;
-  color: #fff;
-  line-height: 60px;
+#header {
   width: 100%;
+  background: #00BFFF;
 }
 
-.el-aside {
-  overflow: hidden;
+#title{
+  float: left;
+  color: white;
+  font-size: 40px;
+  font-family: 华文楷体;
 }
+
 </style>
