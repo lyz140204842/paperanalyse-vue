@@ -2,9 +2,13 @@
 
   <el-card>
 
-    <el-row>
+    <el-row> <!--搜索框-->
       <el-col :span="18">
-        <el-input placeholder="请输入搜索内容" class="input-with-select">
+        <el-input placeholder="请输入搜索内容" class="input-with-select" v-model="searchContent">
+          <el-select placeholder="请选择" slot="prepend" v-model="searchKey" @change="handleSearchKeyChange">
+            <el-option label="教师号" value="tno" style="color: black;"></el-option>
+            <el-option label="教师姓名" value="name" style="color: black;"></el-option>
+          </el-select>
           <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
       </el-col>
@@ -19,41 +23,15 @@
     <el-divider></el-divider>
 
     <template>
-      <el-table stripe border :header-cell-style="{background:'#409EFF',color:'#FFFFFF'}" :data="employees" ref="filterTable" style="font-size: medium;font-family: 楷体;" border>
-        <el-table-column prop="employeeId" label="职工号" width="140" align="center" sortable></el-table-column>
-        <el-table-column prop="name" label="姓名" width="100" sortable></el-table-column>
-        <el-table-column prop="sex" label="性别" width="90" align="center" :filters="sexFilters" :filter-method="filterHandler">
-        </el-table-column>
-        <el-table-column prop="phone" label="电话" width="180">
-          <template slot-scope="scope">
-            <i class="el-icon-phone"></i>
-            <span style="margin-left: 10px">{{scope.row.phone}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column prop="entryTime" label="入职时间" width="180" sortable>
-          <template slot-scope="scope">
-            <i class="el-icon-time"></i>
-            <span style="margin-left: 10px">{{scope.row.entryTime}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column prop="statusDescription" label="在职状态" width="100" align="center" :filters="statusFilters" :filter-method="filterHandler">
-        </el-table-column>
-        <el-table-column prop="departmentName" label="所属部门" width="100" align="center" :filters="departmentFilters"
-                         :filter-method="filterHandler"></el-table-column>
-        <el-table-column prop="salary" label="工资" width="120" align="center" sortable></el-table-column>
-        <el-table-column label="操作" fixed="right" width="150">
-          <template slot-scope="scope">
-            <el-tooltip class="item" content="编辑员工相关信息" placement="left" effect="light">
-              <el-link icon="el-icon-edit" @click="handleEdit(scope.row)">编辑</el-link>
-            </el-tooltip>
-            <template>
-              <el-popconfirm icon="el-icon-info" icon-color="red"title="确定删除该员工的相关信息吗？"
-                             @confirm="handleDelete(scope.row.employeeId)">
-                <el-link icon="el-icon-delete" slot="reference">删除</el-link>
-              </el-popconfirm>
-            </template>
-          </template>
-        </el-table-column>
+      <el-table stripe border :header-cell-style="{background:'#409EFF',color:'#FFFFFF'}" :data="teachers" ref="filterTable" style="font-size: medium;font-family: 楷体;" border>
+        <el-table-column prop="tno" label="教师号" width="200" align="center" sortable></el-table-column>
+        <el-table-column prop="name" label="教师姓名" width="230"></el-table-column>
+        <el-table-column prop="password" label="密码" width="200"></el-table-column>
+        <el-table-column prop="gender" label="性别" width="200"></el-table-column>
+        <el-table-column prop="birthday" label="出生日期" width="200"></el-table-column>
+        <el-table-column prop="phone" label="电话号码" width="200"></el-table-column>
+        <el-table-column prop="email" label="邮箱地址" width="200"></el-table-column>
+        <el-table-column label="操作" fixed="right" width="150"></el-table-column>
       </el-table>
     </template>
 
@@ -62,7 +40,37 @@
 
 <script>
 export default {
-  name: "TeacherManage"
+  name: "TeacherManage",
+  data() { // 页面所用数据
+    return {
+      searchKey: '', // 查询字段
+      searchContent: '', // 查询内容
+      query: { // 查询条件
+        tno: '', // 教师号
+        name: '', // 教师姓名
+        currentPage: 1, // 当前页
+        pageSize: 5 // 页面记录数量
+      },
+      teachers: {}, // 从数据库中查询出来的教师数据
+      genderFilters: [{ // 性别过滤器
+        text: '男',
+        value: '男'
+      }, {
+        text: '女',
+        value: '女'
+      }],
+    }
+  },
+  methods: { // 页面所用方法
+    handleSearchKeyChange() { // 当查询字段发生变化
+      this.query.tno = ''; // 发生变化后，对应的查询条件内容清空
+      this.query.name = '';
+      switch (this.searchKey) { // 选择查询的是
+        case 'tno': this.query.tno = this.searchContent; break;
+        case 'name': this.query.name = this.searchContent; break;
+      }
+    }
+  }
 }
 </script>
 
