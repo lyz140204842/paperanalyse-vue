@@ -1,106 +1,94 @@
 <template>
   <el-container>
-    <el-header>试卷分析系统</el-header>
+    <el-header id="header" height="80px">
+      <div id="title">试卷分析系统-老师</div>
+    </el-header>
+
     <el-container>
-      <el-aside :width="aside">
-        <el-menu :default-openeds="['1']" class="el-menu-vertical-demo" :collapse="isCollapse" router>
-          <el-menu-item @click="handleCollapse">
-            <i :class="icon"></i>
-            <span slot="title">{{navText}}</span>
-          </el-menu-item>
-          <el-submenu v-for="nav in navigations" :key="nav" :index="nav.index">
+      <el-aside width="250px">
+        <el-menu router class="el-menu-vertical-demo">
+          <el-submenu index="1">
             <template slot="title">
-              <i :class="nav.icon"></i>
-              <span slot="title">{{nav.title}}</span>
+              <i class="el-icon-menu"></i>
+              <span class="menu">试卷管理</span>
             </template>
-            <el-menu-item v-for="item in nav.items" :key="nav" :index="item.index">{{item.title}}</el-menu-item>
+            <el-menu-item-group>
+              <el-menu-item class="submenu" index="">试卷管理</el-menu-item>
+              <el-menu-item class="submenu" index="">成绩管理</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+
+          <el-submenu index="2">
+            <template slot="title">
+              <i class="el-icon-document"></i>
+              <span class="menu">试卷分析</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item class="submenu" index="">整体分析</el-menu-item>
+              <el-menu-item class="submenu" index="">参数分析</el-menu-item>
+              <el-menu-item class="submenu" index="">难度分析</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+
+          <el-submenu index="3">
+            <template slot="title">
+              <i class="el-icon-setting"></i>
+              <span class="menu">系统设置</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item class="submenu" index="">个人信息</el-menu-item>
+              <el-menu-item class="submenu" index="">退出登录</el-menu-item>
+            </el-menu-item-group>
           </el-submenu>
         </el-menu>
+
       </el-aside>
+
       <el-main>
         <router-view></router-view>
       </el-main>
+
     </el-container>
+
   </el-container>
 </template>
 
 <script>
 export default {
   data() {
-    return {
-      isCollapse: false,
-      icon: 'el-icon-s-unfold',
-      navText: '展开',
-      aside: 200,
-      navigations: [
-        {
-          'index': '1',
-          'title': '试卷管理',
-          'icon': 'el-icon-menu',
-          'items': [
-            {
-              'index': '/',
-              'title': '试卷管理'
-            },
-            {
-              'index': '/',
-              'title': '成绩管理'
-            },
-          ],
-        },
-        {
-          'index': '2',
-          'title': '试卷分析',
-          'icon': 'el-icon-menu',
-          'items':  [
-            {
-              'index': '/',
-              'title': '整体分析'
-            },
-            {
-              'index': '/',
-              'title': '参数分析'
-            },
-            {
-              'index': '/',
-              'title': '难度分析'
-            },
-          ],
-        },
-      ],
-    };
+    return {};
   },
   methods: {
-    // 导航收缩与展开
-    handleCollapse() {
-      if (this.isCollapse) {
-        this.icon = 'el-icon-s-fold';
-        this.isCollapse = false;
-        this.navText = '收起';
-      } else {
-        this.icon = 'el-icon-s-unfold';
-        this.isCollapse = true;
-        this.navText = '展开';
-      }
-    }
   }
 }
 </script>
 
 <style>
 * {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
 }
 
-.el-header {
-  background-color: #1fafe4;
-  color: #fff;
-  line-height: 60px;
+#header { /*顶部*/
   width: 100%;
+  background: #00BFFF;
 }
 
-.el-aside {
-  overflow: hidden;
+.menu { /*侧边导航*/
+  font-size: 18px;
+  font-family: 黑体;
 }
+
+.submenu { /*侧边导航子选项*/
+  font-size: 16px;
+}
+
+#title{
+  float: left;
+  color: white;
+  font-size: 40px;
+  line-height: 80px;
+  font-family: 华文楷体;
+}
+
 </style>
