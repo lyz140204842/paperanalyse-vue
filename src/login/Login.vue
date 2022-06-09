@@ -13,6 +13,8 @@
           <el-form-item label="密码" prop = "pass">
             <el-input type = "password" v-model="ruleForm.pass"></el-input>
           </el-form-item>
+          <el-radio v-model="userType" label="1">管理员</el-radio>
+          <el-radio v-model="userType" label="2">教师</el-radio>
           <el-form-item>
             <el-button type = "primary" @click = "submitForm()">登录</el-button>
           </el-form-item>
@@ -30,12 +32,17 @@ export default{
         username:'',
         pass:''
       },
+      userType: '',
       error:''
     }
   },
   methods:{
     submitForm(){
-      this.$router.push('/AdminMain');
+      if (this.userType == 1) {
+        this.$router.push('/AdminMain');
+      } else {
+        this.$router.push('/TeacherMain');
+      }
       // if (this.ruleForm.username == "admin" && this.ruleForm.pass == "123"){
       //   this.$router.push('/AdminMain');
       // }

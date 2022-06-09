@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header id="header" height="80px">
-      <div id="title">试卷分析系统-老师</div>
+      <div id="title">试卷分析系统-教师</div>
     </el-header>
 
     <el-container>
@@ -24,9 +24,9 @@
               <span class="menu">试卷分析</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item class="submenu" index="">整体分析</el-menu-item>
+              <el-menu-item class="submenu" index="PaperAnalyseResult">整体分析</el-menu-item>
               <el-menu-item class="submenu" index="">参数分析</el-menu-item>
-              <el-menu-item class="submenu" index="">难度分析</el-menu-item>
+              <el-menu-item class="submenu" index="PictureTest">图表测试</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

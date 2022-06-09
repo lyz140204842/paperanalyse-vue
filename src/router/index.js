@@ -16,7 +16,8 @@ import SelectingCourseBrowse from "@/mainpage/adminpage/CourseManage/SelectingCo
 import TermBrowse from "@/mainpage/adminpage/TermManage/TermBrowse";
 import CourseBrowse from "@/mainpage/adminpage/TermManage/CourseBrowse";
 import PaperBrowse from "@/mainpage/teacherpage/PaperManage/PaperBrowse";
-
+import PaperAnalyseResult from "@/mainpage/teacherpage/PaperManage/PaperAnalyseResult";
+import PictureTest from "@/mainpage/teacherpage/PaperManage/PictureTest";
 Vue.use(Router)
 
 export default new Router({
@@ -79,6 +80,16 @@ export default new Router({
           name: 'PaperBrowse',
           component: PaperBrowse
         },
+        {
+          path: '/PaperAnalyseResult',
+          name: 'PaperAnalyseResult',
+          component: PaperAnalyseResult
+        },        {
+          path: '/PictureTest',
+          name: 'PictureTest',
+          component: PictureTest
+        },
+
       ]
     }
   ]

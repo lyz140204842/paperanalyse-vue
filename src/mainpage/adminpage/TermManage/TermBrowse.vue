@@ -30,7 +30,7 @@
     <template>
       <el-table ref="singleTable" :data="terms" style="font-size: medium;font-family: 楷体;">
         <el-table-column prop="id" label="学期号" align="center" width="100" sortable></el-table-column>
-        <el-table-column prop="year" label="年份" width="100"></el-table-column>
+        <el-table-column prop="year" label="年份" width="100" sortable></el-table-column>
         <el-table-column prop="number" label="学期数" width="200"></el-table-column>
         <el-table-column fixed="right" label="操作" width="120">
           <template slot-scope="scope">
