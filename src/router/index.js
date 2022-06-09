@@ -10,7 +10,8 @@ import TeacherManage from "@/mainpage/adminpage/PeopleManage/TeacherManage";
 import StudentBrowse from "@/mainpage/adminpage/PeopleManage/StudentBrowse";
 import ClassesBrowse from "@/mainpage/adminpage/PeopleManage/ClassesBrowse";
 
-import TeachingCourseBrowse from "@/mainpage/adminpage/CourseManage/TeachingCourseBrowse";
+import SelectingCourseChoose from "@/mainpage/adminpage/CourseManage/SelectingCourseChoose";
+// import TeachingCourseBrowse from "@/mainpage/adminpage/CourseManage/TeachingCourseBrowse";
 import SelectingCourseBrowse from "@/mainpage/adminpage/CourseManage/SelectingCourseBrowse";
 
 import TermBrowse from "@/mainpage/adminpage/TermManage/TermBrowse";
@@ -49,9 +50,9 @@ export default new Router({
           component: ClassesBrowse
         },
         {
-          path: '/TeachingCourseBrowse',
-          name: 'TeachingCourseBrowse',
-          component: TeachingCourseBrowse
+          path: '/SelectingCourseChoose',
+          name: 'SelectingCourseChoose',
+          component: SelectingCourseChoose
         },
         {
           path: '/SelectingCourseBrowse',

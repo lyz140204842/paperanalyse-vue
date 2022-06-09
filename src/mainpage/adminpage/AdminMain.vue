@@ -25,8 +25,8 @@
               <span class="menu">课程管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item class="submenu" index="SelectingCourseBrowse">教师授课管理</el-menu-item>
-              <el-menu-item class="submenu" index="TeachingCourseBrowse">学生选课管理</el-menu-item>
+              <el-menu-item class="submenu" index="TeachingCourseManage">教师授课管理</el-menu-item>
+              <el-menu-item class="submenu" index="SelectingCourseChoose">学生选课管理</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

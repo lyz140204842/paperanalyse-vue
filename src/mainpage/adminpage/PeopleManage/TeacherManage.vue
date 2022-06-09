@@ -39,6 +39,7 @@
         <el-table-column prop="email" label="邮箱地址" width="200"></el-table-column>
         <el-table-column fixed="right" label="操作" width="120">
           <template slot-scope="scope">
+            <el-button type="text" size="medium" @click="">查看</el-button>
             <el-button type="text" size="medium" @click="handleUpdate(scope.row)">修改</el-button>
           </template>
         </el-table-column>
