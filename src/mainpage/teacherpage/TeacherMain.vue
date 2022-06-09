@@ -13,7 +13,7 @@
               <span class="menu">试卷管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item class="submenu" index="">试卷管理</el-menu-item>
+              <el-menu-item class="submenu" index="PaperBrowse">试卷管理</el-menu-item>
               <el-menu-item class="submenu" index="">成绩管理</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
