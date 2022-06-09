@@ -11,7 +11,7 @@
       </el-col>
 
       <el-col :span="15">
-        <el-input placeholder="请输入搜索内容" class="input-with-select">
+        <el-input placeholder="请输入搜索内容" class="input-with-select"  v-model="searchContent">
           <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
         </el-input>
       </el-col>
@@ -172,9 +172,11 @@ export default {
     },
     handlePageSizeChange(val) { //当界面显示数据条数发生变化
       this.query.pageSize = val;
+      this.selectCourse()
     },
     handleCurrentPageChange(val) { //当页面页数发生变化
       this.query.currentPage = val;
+      this.selectCourse()
     },
     insertMessage() { // 插入弹框
       this.$confirm("请检查输入信息是否无误，是否继续？", "提示", {
