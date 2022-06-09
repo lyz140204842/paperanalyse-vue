@@ -15,7 +15,7 @@
             <el-menu-item-group>
               <el-menu-item class="submenu" index="TeacherManage">教师信息管理</el-menu-item>
               <el-menu-item class="submenu" index="StudentBrowse">学生信息管理</el-menu-item>
-              <el-menu-item class="submenu" index="">班级信息管理</el-menu-item>
+              <el-menu-item class="submenu" index="ClassesBrowse">班级信息管理</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -25,8 +25,8 @@
               <span class="menu">课程管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item class="submenu" index="">教师授课管理</el-menu-item>
-              <el-menu-item class="submenu" index="">学生选课管理</el-menu-item>
+              <el-menu-item class="submenu" index="SelectingCourseBrowse">教师授课管理</el-menu-item>
+              <el-menu-item class="submenu" index="TeachingCourseBrowse">学生选课管理</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -36,8 +36,8 @@
               <span class="menu">学期事务管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item class="submenu" index="">学期管理</el-menu-item>
-              <el-menu-item class="submenu" index="">课程管理</el-menu-item>
+              <el-menu-item class="submenu" index="TermBrowse">学期管理</el-menu-item>
+              <el-menu-item class="submenu" index="CourseBrowse">课程管理</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
