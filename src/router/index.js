@@ -18,6 +18,7 @@ import TeachingCourseChoose from "@/mainpage/adminpage/CourseManage/TeachingCour
 import TermBrowse from "@/mainpage/adminpage/TermManage/TermBrowse";
 import CourseBrowse from "@/mainpage/adminpage/TermManage/CourseBrowse";
 import PaperBrowse from "@/mainpage/teacherpage/PaperManage/PaperBrowse";
+import GradeBrowse from "@/mainpage/teacherpage/PaperManage/GradeBrowse";
 import PaperAnalyseResult from "@/mainpage/teacherpage/PaperManage/PaperAnalyseResult";
 import PictureTest from "@/mainpage/teacherpage/PaperManage/PictureTest";
 Vue.use(Router)
@@ -73,7 +74,7 @@ export default new Router({
       ]
     },
     {
-      path: '/TeacherMain', //
+      path: '/TeacherMain',
       name: 'TeacherMain',
       component: TeacherMain,
       children: [
@@ -81,6 +82,11 @@ export default new Router({
           path: '/PaperBrowse',
           name: 'PaperBrowse',
           component: PaperBrowse
+        },
+        {
+          path: '/GradeBrowse',
+          name: 'GradeBrowse',
+          component: GradeBrowse
         },
         {
           path: '/PaperAnalyseResult',

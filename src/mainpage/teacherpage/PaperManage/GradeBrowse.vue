@@ -37,7 +37,7 @@
         <el-table-column prop="className" label="班级名"></el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
-            <el-button type="text" size="medium" @click="handleUpload(scope.row)">上传试卷</el-button>
+            <el-button type="text" size="medium" @click="handleUpload(scope.row)">上传成绩</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -79,7 +79,7 @@
 
 <script>
 export default {
-  name: "PaperManage",
+  name: "GradeBrowse",
   data() { // 页面所用数据
     return {
       searchKey: 'tno', // 查询字段
@@ -174,18 +174,17 @@ export default {
       // console.log(formData.get('file'))
       console.log(this.curPaper)
       this.$axios({
-        url: "/file/upload",
+        url: "/xlsxFile/upload",
         method: "post",
         params: {
           classId: this.curPaper.classId,
-          tno: this.curPaper.tno,
           cno: this.curPaper.cno
         },
         data: formData
       }).then((resp) => {
           if (resp.data.code == 0) {
             this.$message({
-              message: '上传文件成功！',
+              message: '上传成绩成功！',
               type: 'success'
             });
           }
