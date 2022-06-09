@@ -11,8 +11,9 @@ import StudentBrowse from "@/mainpage/adminpage/PeopleManage/StudentBrowse";
 import ClassesBrowse from "@/mainpage/adminpage/PeopleManage/ClassesBrowse";
 
 import SelectingCourseChoose from "@/mainpage/adminpage/CourseManage/SelectingCourseChoose";
+import TeachingCourseChoose from "@/mainpage/adminpage/CourseManage/TeachingCourseChoose";
 // import TeachingCourseBrowse from "@/mainpage/adminpage/CourseManage/TeachingCourseBrowse";
-import SelectingCourseBrowse from "@/mainpage/adminpage/CourseManage/SelectingCourseBrowse";
+// import SelectingCourseBrowse from "@/mainpage/adminpage/CourseManage/SelectingCourseBrowse";
 
 import TermBrowse from "@/mainpage/adminpage/TermManage/TermBrowse";
 import CourseBrowse from "@/mainpage/adminpage/TermManage/CourseBrowse";
@@ -55,9 +56,9 @@ export default new Router({
           component: SelectingCourseChoose
         },
         {
-          path: '/SelectingCourseBrowse',
-          name: 'SelectingCourseBrowse',
-          component: SelectingCourseBrowse
+          path: '/TeachingCourseChoose',
+          name: 'TeachingCourseChoose',
+          component: TeachingCourseChoose
         },
         {
           path: '/TermBrowse',

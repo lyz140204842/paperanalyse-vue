@@ -1,37 +1,47 @@
-<template>
+<template id="main">
 
-  <el-card>
+  <el-card id="card">
 
-    <el-row>
-      <el-col :span="18">
-        <el-input placeholder="请输入搜索内容" class="input-with-select">
-          <el-button slot="append" icon="el-icon-search"></el-button>
+    <el-row><!--搜索框-->
+      <el-col :span="4">
+        <el-select v-model="searchKey" @change="handleSearchKeyChange">
+          <el-option label="学号" value="tno" style="color: black;"></el-option>
+          <el-option label="学生姓名" value="name" style="color: black;"></el-option>
+        </el-select>
+      </el-col>
+
+      <el-col :span="12">
+        <el-input placeholder="请输入搜索内容" class="input-with-select" v-model="searchContent">
+          <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
         </el-input>
       </el-col>
-      <el-col :span="3">
-        <el-button icon="el-icon-refresh">刷新筛选</el-button>
+
+      <el-col :span="4">
+        <el-button icon="el-icon-refresh" @click="handleReset">刷新筛选</el-button>
       </el-col>
+
       <el-col :span="3">
         <el-button icon="el-icon-circle-plus-outline" @click="handleInsert">新增学生</el-button>
       </el-col>
+
     </el-row>
 
     <el-divider></el-divider>
 
-<!--    新增学生弹窗-->
+    <!--    新增学生弹窗-->
     <template>
-      <el-table stripe border :header-cell-style="{background:'#409EFF',color:'#FFFFFF'}" :data="students" ref="filterTable" style="font-size: medium;font-family: 楷体;" border>
-        <el-table-column prop="sno" label="学号" width="140" align="center" sortable></el-table-column>
-        <el-table-column prop="name" label="姓名" width="140" sortable></el-table-column>
-        <el-table-column prop="cno" label="班级" width="140" align="center" :filters="classesFilters" :filter-method="filterHandler">
+      <el-table ref="singleTable" :data="students" style="font-size: medium;font-family: 楷体; ">
+        <el-table-column prop="sno" label="学号" width="200" sortable></el-table-column>
+        <el-table-column prop="name" label="姓名" width="200" sortable></el-table-column>
+        <el-table-column prop="cno" label="班级" width="200">
         </el-table-column>
-        <el-table-column label="操作"  width="150">
+        <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <el-tooltip class="item" content="编辑学生相关信息" placement="left" effect="light">
               <el-link icon="el-icon-edit" @click="handleUpdate(scope.row)">修改</el-link>
             </el-tooltip>
             <template>
-              <el-popconfirm icon="el-icon-info" icon-color="red"title="确定删除该学生的相关信息吗？"
+              <el-popconfirm icon="el-icon-info" icon-color="red" title="确定删除该学生的相关信息吗？"
                              @confirm="handleDelete(scope.row)">
                 <el-link icon="el-icon-delete" slot="reference">删除</el-link>
               </el-popconfirm>
@@ -56,7 +66,7 @@
             <el-input v-model="studentInsert.name" placeholder="请输入学生姓名" style="width: 300px"></el-input>
           </el-form-item>
           <el-form-item label="班级号:">
-            <el-input v-model="studentInsert.cno"placeholder="请输入班级号"  style="width: 300px"></el-input>
+            <el-input v-model="studentInsert.cno" placeholder="请输入班级号" style="width: 300px"></el-input>
           </el-form-item>
         </el-form>
 
@@ -96,8 +106,10 @@ export default {
   name: "StudentManage",
   data() {//定义页面所需数据
     return {
+      searchKey: 'tno', // 查询字段
+      searchContent: '', // 查询内容
       //学生对象
-      students:[],
+      students: [],
       //新增学生对象
       studentInsert: {
         sno: '',
@@ -116,9 +128,9 @@ export default {
       },
       //查询条件
       query: {
-        sno:null,
-        name:null,
-        cno:null,
+        sno: null,
+        name: null,
+        cno: null,
         currentPage: 1,
         pageSize: 5
       },
@@ -133,14 +145,39 @@ export default {
       },
     };
   },
-  methods:{
+  methods: {
+    handleSearchKeyChange() { // 当查询字段发生变化
+      this.query.sno = null; // 发生变化后，对应的查询条件内容清空
+      this.query.name = null;
+      this.setSearchContent();
+    },
+    setSearchContent() {
+      switch (this.searchKey) { // 设置对应字段的查询内容
+        case 'sno':
+          this.query.tno = this.searchContent;
+          break;
+        case 'name':
+          this.query.name = this.searchContent;
+          break;
+      }
+    },
+    handleSearch() { // 查找符合条件的信息
+      this.setSearchContent();
+      this.getData();
+    },
+    handleReset() { // 重置查询条件
+      this.searchContent = ''; // 输入框内容
+      this.query.sno = null; // 查询条件中的教师号
+      this.query.name = null; // 查询条件中的教师姓名
+      this.getData();
+    },
     /**
      * 查询学生数据源
      */
     getData() {
       this.$axios('/student/select', {
         params: this.query //查询参数
-      }, ).then((resp) => {
+      },).then((resp) => {
         if (resp.data.code === 0) {//查询成功
           //将查询结果赋给该页面列表对应对象
           this.pagination = resp.data.data;
@@ -212,7 +249,7 @@ export default {
       this.dialogUpdate = true;
     },
     updateMessage() { // 更新弹窗
-      this.$confirm("请检查输入信息是否无误，是否继续？","提示",{
+      this.$confirm("请检查输入信息是否无误，是否继续？", "提示", {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'waring'
@@ -243,12 +280,12 @@ export default {
      * @param row
      */
     handleDelete(row) { // 删除学生
-      this.studentDelete= row;
+      this.studentDelete = row;
       this.deleteStudent();
       console.log(this.studentDelete.sno)
     },
     deleteStudent() {//执行删除操作
-      this.$axios.delete('/student/delete',{
+      this.$axios.delete('/student/delete', {
           params: {
             sno: this.studentDelete.sno //此处参数名称要与后端删除方法中参数名称一致
           },
@@ -257,7 +294,7 @@ export default {
               indices: false
             })
           }
-      }
+        }
       ).then(resp => {
         if (resp.data.code === 0) {
           this.$message({
@@ -280,14 +317,15 @@ export default {
 </script>
 
 <style scoped>
+
 #pagination {
   margin-top: 15px;
   text-align: center;
 }
 
 #card {
-  width: 1000px;
-  margin-left: 15%;
+  width: 800px;
+  margin-left: 20%;
 }
 
 </style>

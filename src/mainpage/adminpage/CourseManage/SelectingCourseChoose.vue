@@ -67,7 +67,7 @@
         </el-form-item>
         <el-form-item label="班级号：">
           <el-select style="width: 300px" v-model="selectingCourse.classId">
-            <el-option v-for="temp in classes" :label="temp.name" :value="temp.id"></el-option>
+            <el-option v-for="temp in classes" :label="temp.name" :value="temp.id" :key="temp.id"></el-option>
           </el-select>
         </el-form-item>
       </el-form>

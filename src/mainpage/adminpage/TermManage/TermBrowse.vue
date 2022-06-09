@@ -3,24 +3,26 @@
   <el-card id="card">
 
     <el-row> <!--搜索框-->
-      <el-col :span="3">
+      <el-col :span="5">
         <el-select v-model="searchKey" @change="handleSearchKeyChange">
           <el-option label="学期号" value="id" style="color: black;"></el-option>
           <el-option label="年份" value="year" style="color: black;"></el-option>
         </el-select>
       </el-col>
 
-      <el-col :span="15">
+      <el-col :span="18">
         <el-input placeholder="请输入搜索内容" class="input-with-select" v-model="searchContent">
           <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
         </el-input>
       </el-col>
+    </el-row>
 
-      <el-col :span="3">
+    <el-row>
+      <el-col :span="18">
         <el-button icon="el-icon-refresh" @click="handleReset">刷新筛选</el-button>
       </el-col>
 
-      <el-col :span="3">
+      <el-col :span="1">
         <el-button icon="el-icon-circle-plus-outline" @click="handleInsert">新增学期</el-button>
       </el-col>
     </el-row>
@@ -29,9 +31,9 @@
 
     <template>
       <el-table ref="singleTable" :data="terms" style="font-size: medium;font-family: 楷体;">
-        <el-table-column prop="id" label="学期号" align="center" width="100" sortable></el-table-column>
-        <el-table-column prop="year" label="年份" width="100" sortable></el-table-column>
-        <el-table-column prop="number" label="学期数" width="200"></el-table-column>
+        <el-table-column prop="id" label="学期号" align="center" width="150" sortable></el-table-column>
+        <el-table-column prop="year" label="开始学年" align="center" width="150" sortable></el-table-column>
+        <el-table-column prop="number" label="学期数" align="center" width="100"></el-table-column>
         <el-table-column fixed="right" label="操作" width="120">
           <template slot-scope="scope">
             <el-button type="text" size="medium" @click="handleUpdate(scope.row)">修改</el-button>
@@ -245,8 +247,8 @@ export default {
 }
 
 #card {
-  width: 1000px;
-  margin-left: 15%;
+  width: 600px;
+  margin-left: 25%;
 }
 
 </style>
