@@ -212,7 +212,7 @@ export default {
         this.insertTeacher();
       })
     },
-    updateMessage() { // 更新谭光
+    updateMessage() { // 更新弹窗
       this.$confirm("请检查输入信息是否无误，是否继续？","提示",{
         confirmButtonText: '确定',
         cancelButtonText: '取消',
