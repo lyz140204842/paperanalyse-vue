@@ -15,7 +15,7 @@
             <el-menu-item-group>
               <el-menu-item class="submenu" index="TeacherManage">教师信息管理</el-menu-item>
               <el-menu-item class="submenu" index="StudentBrowse">学生信息管理</el-menu-item>
-              <el-menu-item class="submenu" index="">班级信息管理</el-menu-item>
+              <el-menu-item class="submenu" index="ClassesBrowse">班级信息管理</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
