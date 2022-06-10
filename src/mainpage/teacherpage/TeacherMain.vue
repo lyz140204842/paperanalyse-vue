@@ -25,8 +25,8 @@
             </template>
             <el-menu-item-group>
               <el-menu-item class="submenu" index="PaperAnalyseResult">整体分析</el-menu-item>
-              <el-menu-item class="submenu" index="">参数分析</el-menu-item>
-              <el-menu-item class="submenu" index="PictureTest">图表测试</el-menu-item>
+<!--              <el-menu-item class="submenu" index="">参数分析</el-menu-item>-->
+              <el-menu-item class="submenu" index="PictureTest">试卷分析</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
