@@ -37,12 +37,12 @@
                       style="width: 100%">
               <el-table-column header-align="center" align="center" prop="serialNumber" label="题号" width="120">
               </el-table-column>
-              <el-table-column header-align="center" align="center" prop="maxScore" label="平均分"
+              <el-table-column header-align="center" align="center" prop="maxScore" label="最高分"
                                width="80"></el-table-column>
               <el-table-column header-align="center" align="center" prop="minScore"
-                               label="最高分" width="80"></el-table-column>
+                               label="最低分" width="80"></el-table-column>
               <el-table-column header-align="center" align="center" prop="averageScore"
-                               label="最低分" width="90"></el-table-column>
+                               label="平均分" width="90"></el-table-column>
               <el-table-column header-align="center" align="center" prop="difficulty"
                                label="难度" width="100"></el-table-column>
               <el-table-column header-align="center" align="center" prop="distinction"
@@ -186,11 +186,14 @@ export default {
       },
       dialogCheck: false, // 插入学生信息
 
-      questionNumber: 4,//题目数
+      questionNumber: '',//题目数
       simpleQuestion: "",
       middleQuestion: '',
       difficultQuestion: '',
 
+      lowDifferentiation: '',
+      mediumDifferentiation:'',
+      highDifferentiation:'',
 
     }
   },
@@ -198,7 +201,7 @@ export default {
   mounted() {
 
     this.getData();
-    this.getFile()
+    this.getFile();
 
   },
 
@@ -209,7 +212,7 @@ export default {
       this.onInitEchart3();
       this.onInitEchart4();
     },
-    handleDate() {//处理数据
+    handleDate() {//处理数据，得出难度分析
       this.questionNumber = 0;
       this.simpleQuestion = 0;
       this.middleQuestion = 0;
@@ -222,6 +225,29 @@ export default {
 
         } else {
           this.difficultQuestion++;
+        }
+        this.questionNumber++;
+      }
+      // alert("简单题数"+this.simpleQuestion);
+      // alert("中等题数"+this.middleQuestion);
+      // alert("难题数"+this.difficultQuestion);
+      // alert("总题目数"+this.questionNumber);
+      this.resumeGroup();
+
+    },
+    handleDate4() {//处理数据，得出试卷区分度分析
+      this.lowDifferentiation = 0;
+      this.mediumDifferentiation = 0;
+      this.highDifferentiation = 0;
+      this.questionNumber = 0;
+      for (let i = 0; i < this.analyseResults.length; i++) {
+        if (this.analyseResults[i].distinction <= 0.1) {
+          this.lowDifferentiation++;
+        } else if (this.analyseResults[i].distinction <= 0.2) {
+          this.mediumDifferentiation++;
+
+        } else {
+          this.highDifferentiation++;
         }
         this.questionNumber++;
       }
@@ -265,6 +291,7 @@ export default {
         }
         this.dialogCheck = false;
         this.handleDate();//图形数据初始化
+        this.handleDate4();//区分度图表数据初始化
         // alert(this.questionNumber);
       })
     },
@@ -454,6 +481,7 @@ export default {
         });
       });
     },
+    //初始化区分度分析表
     onInitEchart4() {
       let echarts = require('echarts');
       let myChart = echarts.init(document.getElementById('echart4'), 'walden');
@@ -469,7 +497,7 @@ export default {
             avoidLabelOverlap: false,
             label: {
               position: 'outer',
-              formatter: '{b}\n{c}亿元',
+              formatter: '{b}\n{c}',
               color: '#0078FF',
               fontSize: 12,
               lineHeight: 22
@@ -483,10 +511,10 @@ export default {
               show: true
             },
             data: [
-              {value: 26.4, name: '社会资本 十三五投资'},
-              {value: 31.5, name: '中央财政 十三五投资'},
-              {value: 30, name: '其他 十三五投资'},
-              {value: 62, name: '地方财政 十三五投资'},
+              {value: this.lowDifferentiation, name: '低区分度',itemStyle: '#1FC48D'},
+              {value: this.mediumDifferentiation, name: '中区分度',itemStyle: '#6DC8EC'},
+              {value: this.highDifferentiation, name: '高区分度',itemStyle: '#3F8FFF'},
+              //{value: 62, name: '地方财政 十三五投资'},
             ]
           }
         ]
